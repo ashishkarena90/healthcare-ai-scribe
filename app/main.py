@@ -4,7 +4,7 @@ from pathlib import Path
 
 app=FastAPI()
 
-upload_dir = Path("data/upload")
+upload_dir = Path("app/data/upload")
 upload_dir.mkdir(parents=True, exist_ok=True)
 
 @app.get("/")
