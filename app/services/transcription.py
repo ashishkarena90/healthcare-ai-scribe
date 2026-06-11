@@ -2,12 +2,11 @@ import whisper
 
 model = whisper.load_model("base")
 
-def transcribe_audio(audio_path : str) -> str:
-    """
-    Transcribe audio file using Whisper
-    """
+def transcribe_audio(audio_path : str):
     
-    result = model.transcribe(audio_path, task="translate")
+    result = model.transcribe(audio_path)
     
-    print(result["text"])
-    print(result["language"])
+    return{
+        "transcript": result["text"],
+        "language": result["language"]
+    }
