@@ -4,3 +4,9 @@ Is project mein maine FastAPI ka use karke ek backend API develop ki hai jo audi
 Upload hone ke baad Whisper model ki help se audio ko text mein convert kiya jata hai aur language detect ki
 jati hai. Uske baad maine ek diarization module implement kiya hai jo transcript mein se Doctor aur Patient
 ke dialogues ko alag-alag identify karke structured format mein return karta hai.
+
+2-week
+
+Maine Groq Llama 3.3 ka use karke ek Prompt Engineering pipeline implement ki hai jo doctor aur patient ke 
+raw transcript ko structured SOAP Notes me convert karti hai. Iske baad Pydantic schema ke through output
+ko validate kiya jata hai aur final result FastAPI endpoint ke madhyam se provide kiya jata hai.
