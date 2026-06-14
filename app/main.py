@@ -3,6 +3,7 @@ import shutil
 from pathlib import Path
 from app.services.transcription import transcribe_audio
 from app.services.diarization import diarize_transcript
+from app.services.soap_generator import generate_soap
 
 app=FastAPI()
 
@@ -24,12 +25,23 @@ async def upload_audio(file: UploadFile = File(...)):
         
     print(f"File saved at: {file_path}")
         
-    transcript = transcribe_audio(str(file_path))
     
     transcription_result = transcribe_audio(str(file_path))
-    conversation = diarize_transcript(transcription_result["transcript"])
     
-    print("Transcript Result:", transcript)
+    conversation = diarize_transcript(
+    transcription_result["transcript"]
+)
+    
+    conversation_text = ""
+    
+    for item in conversation:
+        conversation_text += (
+            f"{item['speaker']}: {item['text']}\n"
+        )
+        
+    soap_note = generate_soap(conversation_text)
+    
+    print("Transcript Result:", transcription_result)
         
     return{
         "filename": file.filename,
@@ -37,5 +49,6 @@ async def upload_audio(file: UploadFile = File(...)):
         "transcript": transcription_result["transcript"],
         "language": transcription_result["language"],
         "conversation": conversation,
+        "soap_note": soap_note,
         "status": "uploaded successfully"
     }
