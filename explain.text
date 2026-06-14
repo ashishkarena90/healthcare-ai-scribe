@@ -1,0 +1,6 @@
+1-week
+
+Is project mein maine FastAPI ka use karke ek backend API develop ki hai jo audio file ko upload karti hai.
+Upload hone ke baad Whisper model ki help se audio ko text mein convert kiya jata hai aur language detect ki
+jati hai. Uske baad maine ek diarization module implement kiya hai jo transcript mein se Doctor aur Patient
+ke dialogues ko alag-alag identify karke structured format mein return karta hai.
