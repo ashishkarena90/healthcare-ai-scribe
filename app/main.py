@@ -28,9 +28,7 @@ async def upload_audio(file: UploadFile = File(...)):
     
     transcription_result = transcribe_audio(str(file_path))
     
-    conversation = diarize_transcript(
-    transcription_result["transcript"]
-)
+    conversation = diarize_transcript(transcription_result["transcript"])
     
     conversation_text = ""
     
