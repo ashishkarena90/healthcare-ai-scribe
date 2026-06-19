@@ -5,7 +5,7 @@ client = chromadb.PersistentClient(path="chroma_db")
 collection = client.get_collection("icd10_codes")
 
 
-def recommend_icd_codes(assessment: str, n_results: int = 3):
+def recommend_icd_codes(assessment: str, n_results: int = 2):
 
     results = collection.query(
         query_texts=[assessment],
