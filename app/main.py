@@ -4,6 +4,7 @@ from pathlib import Path
 from app.services.transcription import transcribe_audio
 from app.services.diarization import diarize_transcript
 from app.services.soap_generator import generate_soap
+from app.services.icd_rag import recommend_icd_codes
 
 app=FastAPI()
 
@@ -28,9 +29,7 @@ async def upload_audio(file: UploadFile = File(...)):
     
     transcription_result = transcribe_audio(str(file_path))
     
-    conversation = diarize_transcript(
-    transcription_result["transcript"]
-)
+    conversation = diarize_transcript(transcription_result["transcript"])
     
     conversation_text = ""
     
@@ -40,6 +39,14 @@ async def upload_audio(file: UploadFile = File(...)):
         )
         
     soap_note = generate_soap(conversation_text)
+    assessment = soap_note['assessment']
+    if isinstance(assessment, list):
+      assessment = " ".join(assessment)
+      
+      
+    icd_codes = recommend_icd_codes(
+        assessment
+    )
     
     print("Transcript Result:", transcription_result)
         
@@ -50,5 +57,6 @@ async def upload_audio(file: UploadFile = File(...)):
         "language": transcription_result["language"],
         "conversation": conversation,
         "soap_note": soap_note,
+        "icd_codes": icd_codes,
         "status": "uploaded successfully"
     }

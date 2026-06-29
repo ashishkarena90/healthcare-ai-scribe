@@ -11,10 +11,10 @@ llm = ChatGroq(
     api_key=os.getenv("GROQ_API_KEY")
 )
 
-def generate_soap(coversation: str):
+def generate_soap(conversation: str):
     
     final_prompt = soap_prompt.format(
-        conversation = coversation
+        conversation = conversation
     )
     
     response = llm.invoke(final_prompt)
