@@ -10,3 +10,11 @@ ke dialogues ko alag-alag identify karke structured format mein return karta hai
 Maine Groq Llama 3.3 ka use karke ek Prompt Engineering pipeline implement ki hai jo doctor aur patient ke 
 raw transcript ko structured SOAP Notes me convert karti hai. Iske baad Pydantic schema ke through output
 ko validate kiya jata hai aur final result FastAPI endpoint ke madhyam se provide kiya jata hai.
+
+3-week
+
+Week 3 me humne ICD-10 Code Recommendation ke liye RAG system implement kiya. Humne ICD-10 codes ka ek
+CSV dataset banaya, usse ChromaDB vector database me store kiya aur assessment text ke basis par relevant
+ICD codes retrieve karne ki functionality develop ki.Phir SOAP note ke Assessment section ko RAG pipeline
+se connect kiya, jisse AI automatically matching ICD-10 billing codes suggest kar sake. Finally, poore flow
+ko test kiya:
